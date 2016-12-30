@@ -18,6 +18,14 @@
       - restart docker service
     when: force_docker_restart is defined and force_docker_restart|bool == true
 
+  - name: copy over Docker daemon configuration file
+    notify:
+      - reload services
+      - restart docker service
+    copy: src=daemon.json.j2
+          dest=/etc/docker/daemon.json
+          mode=0644
+
   # verify that Docker installed succesfully and is running
   - name: verify docker is installed
     command: docker ps

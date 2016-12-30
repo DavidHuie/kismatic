@@ -29,6 +29,7 @@ type Cluster struct {
 	Networking               NetworkConfig
 	Certificates             CertsConfig
 	SSH                      SSHConfig
+	DockerJSONOptions        string `yaml:"docker_json_options"`
 }
 
 // A Node is a compute unit, virtual or physical, that is part of the cluster

@@ -202,6 +202,10 @@ func (ae *ansibleExecutor) buildInstallExtraVars(p *Plan, tlsDirectory string) (
 	}
 	ev["setup_internal_docker_registry"] = strconv.FormatBool(p.DockerRegistry.SetupInternal)
 
+	if p.Cluster.DockerJSONOptions != "" {
+		ev["docker_json_options"] = p.Cluster.DockerJSONOptions
+	}
+
 	// Use user provided details for Docker registry
 	if p.DockerRegistry.Address != "" {
 		ev["docker_certificates_ca_path"] = p.DockerRegistry.CAPath
