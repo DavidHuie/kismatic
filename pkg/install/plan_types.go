@@ -40,8 +40,9 @@ type Node struct {
 
 // A NodeGroup is a collection of nodes
 type NodeGroup struct {
-	ExpectedCount int `yaml:"expected_count"`
-	Nodes         []Node
+	DontInstallDocker bool `yaml:"dont_install_docker"`
+	ExpectedCount     int  `yaml:"expected_count"`
+	Nodes             []Node
 }
 
 // An OptionalNodeGroup is a collection of nodes that can be empty
@@ -53,6 +54,7 @@ type MasterNodeGroup struct {
 	LoadBalancedFQDN      string `yaml:"load_balanced_fqdn"`
 	LoadBalancedShortName string `yaml:"load_balanced_short_name"`
 	Nodes                 []Node
+	DontInstallDocker     bool `yaml:"dont_install_docker"`
 }
 
 // DockerRegistry details for docker registry, either confgiured by the cli or customer provided

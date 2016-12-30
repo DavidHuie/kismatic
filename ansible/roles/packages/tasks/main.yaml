@@ -65,11 +65,22 @@
       - install kubernetes node yum package
     when: ansible_os_family == 'RedHat'
 
+  - name: install Docker on masters
+    command: /bin/true
+    notify:
+      - install docker-engine deb package
+    when: ansible_os_family == 'Debian' and 'master' in group_names and install_docker_on_masters
+
+  - name: install Docker on workers
+    command: /bin/true
+    notify:
+      - install docker-engine deb package
+    when: ansible_os_family == 'Debian' and 'worker' in group_names and install_docker_on_workers
+
   - name: install deb packages
     command: /bin/true
     notify:
       - install etcd deb package
-      - install docker-engine deb package
       - install kubernetes networking deb package
       - install kubernetes node deb package
       - install kubernetes master deb package

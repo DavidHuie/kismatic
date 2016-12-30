@@ -186,6 +186,8 @@ func (ae *ansibleExecutor) buildInstallExtraVars(p *Plan, tlsDirectory string) (
 		"modify_hosts_file":          strconv.FormatBool(p.Cluster.Networking.UpdateHostsFiles),
 		"enable_calico_policy":       strconv.FormatBool(p.Cluster.Networking.PolicyEnabled),
 		"allow_package_installation": strconv.FormatBool(p.Cluster.AllowPackageInstallation),
+		"install_docker_on_masters":  strconv.FormatBool(!p.Master.DontInstallDocker),
+		"install_docker_on_workers":  strconv.FormatBool(!p.Worker.DontInstallDocker),
 	}
 
 	// Setup FQDN or default to first master
